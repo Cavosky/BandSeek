@@ -29,13 +29,64 @@ CREATE TABLE Band(
     bio varchar(2000)
 );
 
+CREATE TABLE Chat(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    desc varchar(255)
+);
+
 CREATE TABLE User(
     username varchar(255) PRIMARY KEY,
     mail varchar(255) UNIQUE NOT NULL,
     password varchar(255) NOT NULL,
     bio varchar(2000),
     birthday data,
-    name varchar(255)
-    ...
+    name varchar(255),
+    surname varchar(255),
+    phone varchar(255) UNIQUE,
+    admin boolean DEFAULT false,
+    idAddress int NOT NULL,
+    photo int,
+    FOREIGN KEY (idAddress) REFERENCES Address(id), 
+    FOREIGN KEY (photo) REFERENCES Media(id)
 );
 
+CREATE TABLE Post(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    desc varchar(2000),
+    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    username varchar(255),
+    band int,
+    photo int,
+    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (band) REFERENCES Band(id),
+    FOREIGN KEY (photo) REFERENCES Media(id)
+);
+
+CREATE TABLE Announce(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    desc varchar(2000),    
+    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    username varchar(255),
+    band int,
+    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (band) REFERENCES Band(id)
+);
+
+CREATE TABLE Comment(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    content varchar(2000),    
+    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    idPost int NOT NULL,
+    username varchar(255),
+    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (idPost) REFERENCES Post(id)
+);
+
+CREATE TABLE Message(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    content varchar(2000),    
+    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    username varchar(255),
+    FOREIGN KEY (username) REFERENCES User(username),
+    ...
+);
