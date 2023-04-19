@@ -86,7 +86,17 @@ CREATE TABLE Message(
     id int PRIMARY KEY AUTO_INCREMENT,
     content varchar(2000),    
     date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    username varchar(255),
+    username varchar(255) NOT NULL,
+    idChat int NOT NULL,
     FOREIGN KEY (username) REFERENCES User(username),
-    ...
+    FOREIGN KEY (idChat) REFERENCES Chat(id)
+);
+
+CREATE TABLE Audio(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(255) NOT NULL,
+    path varchar(255) NOT NULL,
+    lyrics varchar(2000),
+    username varchar(255) NOT NULL,
+    FOREIGN KEY (username) REFERENCES User(username)
 );
