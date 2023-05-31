@@ -57,7 +57,7 @@ CREATE TABLE Post(
     username varchar(255),
     band int,
     photo int,
-    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (username) REFERENCES Users(username),
     FOREIGN KEY (band) REFERENCES Band(id),
     FOREIGN KEY (photo) REFERENCES Media(id)
 );
@@ -68,7 +68,7 @@ CREATE TABLE Announce(
     date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     username varchar(255),
     band int,
-    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (username) REFERENCES Users(username),
     FOREIGN KEY (band) REFERENCES Band(id)
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE Comment(
     date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     idPost int NOT NULL,
     username varchar(255),
-    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (username) REFERENCES Users(username),
     FOREIGN KEY (idPost) REFERENCES Post(id)
 );
 
@@ -88,7 +88,7 @@ CREATE TABLE Message(
     date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     username varchar(255) NOT NULL,
     idChat int NOT NULL,
-    FOREIGN KEY (username) REFERENCES User(username),
+    FOREIGN KEY (username) REFERENCES Users(username),
     FOREIGN KEY (idChat) REFERENCES Chat(id)
 );
 
@@ -98,5 +98,5 @@ CREATE TABLE Audio(
     path varchar(255) NOT NULL,
     lyrics varchar(2000),
     username varchar(255) NOT NULL,
-    FOREIGN KEY (username) REFERENCES User(username)
+    FOREIGN KEY (username) REFERENCES Users(username)
 );
