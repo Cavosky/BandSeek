@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS BandSeek
+CREATE DATABASE IF NOT EXISTS BandSeekfrtho
 
 CHARACTER SET utf8;
 
@@ -31,15 +31,15 @@ CREATE TABLE Band(
 
 CREATE TABLE Chat(
     id int PRIMARY KEY AUTO_INCREMENT,
-    desc varchar(255)
+    description varchar(255)
 );
 
-CREATE TABLE User(
+CREATE TABLE Users(
     username varchar(255) PRIMARY KEY,
     mail varchar(255) UNIQUE NOT NULL,
     password varchar(255) NOT NULL,
     bio varchar(2000),
-    birthday data,
+    birthday date,
     name varchar(255),
     surname varchar(255),
     phone varchar(255) UNIQUE,
@@ -52,8 +52,8 @@ CREATE TABLE User(
 
 CREATE TABLE Post(
     id int PRIMARY KEY AUTO_INCREMENT,
-    desc varchar(2000),
-    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    description varchar(2000),
+    date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     username varchar(255),
     band int,
     photo int,
@@ -64,8 +64,8 @@ CREATE TABLE Post(
 
 CREATE TABLE Announce(
     id int PRIMARY KEY AUTO_INCREMENT,
-    desc varchar(2000),    
-    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    description varchar(2000),    
+    date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     username varchar(255),
     band int,
     FOREIGN KEY (username) REFERENCES User(username),
@@ -75,7 +75,7 @@ CREATE TABLE Announce(
 CREATE TABLE Comment(
     id int PRIMARY KEY AUTO_INCREMENT,
     content varchar(2000),    
-    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     idPost int NOT NULL,
     username varchar(255),
     FOREIGN KEY (username) REFERENCES User(username),
@@ -85,7 +85,7 @@ CREATE TABLE Comment(
 CREATE TABLE Message(
     id int PRIMARY KEY AUTO_INCREMENT,
     content varchar(2000),    
-    date data NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    date date NOT NULL DEFAULT CURRENT_TIMESTAMP,
     username varchar(255) NOT NULL,
     idChat int NOT NULL,
     FOREIGN KEY (username) REFERENCES User(username),
